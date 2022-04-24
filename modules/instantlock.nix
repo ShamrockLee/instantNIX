@@ -10,7 +10,8 @@ in
   options = {
     programs.instantlock = {
       enable = mkOption {
-        default = ture;
+        default = false;
+        example = true;
         type = types.bool;
         description = ''
           Whether to install instantlock screen locker with setuid wrapper.
@@ -21,6 +22,10 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = [ pkgs.instantlock ];
-    security.wrappers.instantlock.source = "${pkgs.instantlock.out}/bin/instantlock";
+    security.wrappers.instantlock = {
+      source = "${pkgs.instantlock.out}/bin/instantlock";
+      owner = "root";
+      group = "root";
+    };
   };
 }
