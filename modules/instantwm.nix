@@ -30,7 +30,7 @@ in
             waitPID=$!
           '';
       };
-    config.programs.instantlock.enable = true;
+    programs.instantlock.enable = true;
 
     environment.systemPackages = [ pkgs.instantwm ];
 
