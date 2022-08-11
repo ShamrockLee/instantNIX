@@ -64,6 +64,10 @@ in
           '';
       };
 
+    services.xserver.exportConfiguration = true;
+
+    programs.dconf.enable = true;
+
     programs.instantlock = {
       enable = true;
       instantosPackages = mkDefault cfg.instantosPackages;
